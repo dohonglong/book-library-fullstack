@@ -88,6 +88,7 @@ describe('movie controller', () => {
     const res3 = await request(app).get('/api/v1/movies')
 
     expect(res3.body.length).toEqual(2)
+    // res3.body.length === 2
     expect(res3.body[0]._id).toEqual(res1.body._id)
     expect(res3.body[1]._id).toEqual(res2.body._id)
   })

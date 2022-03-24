@@ -2,6 +2,7 @@
 import mongoose, { Document } from 'mongoose'
 
 export type MovieDocument = Document & {
+  _id: string
   name: string
   publishedYear: number
   genres: string[]
