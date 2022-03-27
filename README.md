@@ -9,7 +9,7 @@ First choose the project topic. The topics are from REST API lecture.
 
 ## Setting Up
 
-1. Create a `.env` file in the root directory and copy the content from `.env.example`
+1. Create a `.env` file in the api folder and copy the content from `.env.example`
 
 2. Make sure mongodb is running
 3. Install dependencies: `yarn`

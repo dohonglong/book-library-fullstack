@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-delimiter-style */
 import mongoose, { Document } from 'mongoose'
 import { BookDocument } from './Book'
 
@@ -36,9 +35,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  // address: {
-  // 	type: String
-  // }
 })
 
 export default mongoose.model<UserDocument>('User', userSchema)
