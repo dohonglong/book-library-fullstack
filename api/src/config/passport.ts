@@ -1,13 +1,8 @@
-import passport from 'passport'
-import passportLocal from 'passport-local'
-
 //declaration merging
 import GoogleIdTokenStrategy from 'passport-google-id-token'
 import JwtStrategy from 'passport-jwt'
-import { Request, Response, NextFunction } from 'express'
 
 import { GOOGLE_CLIENT_ID, JWT_SECRET } from '../util/secrets'
-import { doesNotThrow } from 'assert'
 
 // const LocalStrategy = passportLocal.Strategy
 
