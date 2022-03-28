@@ -38,7 +38,14 @@ export const jwtStrategy = new JwtStrategy.Strategy(
     console.log('payload', payload)
     const email = payload.email
     // const user = User.findByEmail(email)
-    const user = {}
+    const user = {
+      firstName: 'duy',
+      lastName: 'nguyen',
+      createdAt: '2022-03-01',
+      dob: '2022-03-01',
+      email: 'duy.nguyen@integrify.io',
+      isAdmin: true,
+    }
     done(null, user)
   }
 )

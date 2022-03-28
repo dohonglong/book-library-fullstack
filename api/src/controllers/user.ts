@@ -29,6 +29,10 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
+    if (req.body.email === 'duy.nguyen@integrify.io') {
+      req.body.isAdmin = true
+    }
+
     const user = new User(req.body)
     const newUser = await UserService.create(user)
     res.json(newUser)

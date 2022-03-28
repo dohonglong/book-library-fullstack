@@ -14,6 +14,7 @@ declare namespace Express {
       createdAt: Date
       dob: Date
       email: string
+      isAdmin: boolean
     }
   }
 }
