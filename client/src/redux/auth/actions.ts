@@ -1,6 +1,3 @@
-import { Dispatch } from 'redux'
-import axios from 'axios'
-
 export type BookDocument = {
   _id: string
   name: string
