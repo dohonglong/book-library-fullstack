@@ -2,7 +2,6 @@ import mongoose, { Document } from 'mongoose'
 import { BookDocument } from './Book'
 
 export type UserDocument = Document & {
-  _id: string
   firstName: string
   lastName: string
   borrowBooks: string[] | BookDocument[]
