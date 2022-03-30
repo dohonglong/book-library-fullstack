@@ -41,7 +41,7 @@ axios.interceptors.response.use(
   }
 )
 
-axios.defaults.baseURL = 'http://localhost:5000/api/v1'
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND
 
 ReactDOM.render(
   <React.StrictMode>
