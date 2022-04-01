@@ -1,10 +1,11 @@
 import User, { UserDocument } from '../models/User'
-import { NotFoundError } from '../helpers/apiError'
 
-const create = async (user: UserDocument): Promise<UserDocument> => {
-  return user.save()
+const create = async (userDocument: UserDocument) => {
+  return await User.create(userDocument)
 }
 
-export default {
-  create,
+const findAll = async () => {
+  return await User.find()
 }
+
+export default { findAll, create }
