@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/member-delimiter-style */
 import mongoose, { Document } from 'mongoose'
+import { BookDocument } from './Book'
 
 export type UserDocument = Document & {
   _id: string
