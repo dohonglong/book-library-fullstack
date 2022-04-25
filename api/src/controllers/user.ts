@@ -41,6 +41,24 @@ export const createUser = async (
   }
 }
 
+export const findUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(
+      await User.findById(req.params.userId).populate('borrowBooks.book')
+    )
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
 export const googleLogin = async (
   req: Request,
   res: Response,

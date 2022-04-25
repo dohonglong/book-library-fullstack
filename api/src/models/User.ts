@@ -7,6 +7,7 @@ export type UserDocument = Document & {
   lastName: string
   borrowBooks: string[]
   email: string
+  isAdmin: boolean
 }
 
 const borrowBookSchema = new mongoose.Schema({
@@ -34,6 +35,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
 })
 

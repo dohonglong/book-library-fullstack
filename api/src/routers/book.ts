@@ -1,4 +1,6 @@
 import express from 'express'
+import passport from 'passport'
+import adminCheck from '../middlewares/adminCheck'
 
 import {
   createBook,
@@ -14,9 +16,28 @@ const router = express.Router()
 // Every path we define here will get /api/v1/books prefix
 router.get('/', findAll)
 router.get('/:bookId', findById)
-router.put('/:bookId', updateBook)
-router.delete('/:bookId', deleteBook)
-router.post('/', createBook)
-router.post('/borrow', borrowBook)
+router.put(
+  '/:bookId',
+  passport.authenticate('jwt', { session: false }),
+  adminCheck,
+  updateBook
+)
+router.delete(
+  '/:bookId',
+  passport.authenticate('jwt', { session: false }),
+  adminCheck,
+  deleteBook
+)
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  adminCheck,
+  createBook
+)
+router.post(
+  '/borrow',
+  passport.authenticate('jwt', { session: false }),
+  borrowBook
+)
 
 export default router
