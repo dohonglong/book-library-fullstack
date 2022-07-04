@@ -10,19 +10,19 @@ function App() {
   const dispatch = useDispatch();
   const responseGoogle = async (response: any) => {
     const tokenId = response?.tokenId;
-    const res = await axios.post("/google-login", { id_token: tokenId });
+    const res = await axios.post("/user/google-login", { id_token: tokenId });
     const { user, token } = res.data;
     localStorage.setItem("access_token", token);
 
     dispatch(loginSuccess(user));
   };
 
-  axios.get("/movies");
+  axios.get("/book");
 
   return (
     <div className="App">
       <GoogleLogin
-        clientId="498733308217-ppkb1g8dscc5h5o5bkcqtvvjtske6ju1.apps.googleusercontent.com"
+        clientId="31611394858-kgo9mn1ei3fjrtsk50ic7hsk4j5ffmdr.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}

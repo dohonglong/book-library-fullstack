@@ -24,6 +24,10 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   findUserById
 )
-router.post('/google-login', googleLogin)
+router.post(
+  '/google-login',
+  passport.authenticate('google-id-token', { session: false }),
+  googleLogin
+)
 
 export default router

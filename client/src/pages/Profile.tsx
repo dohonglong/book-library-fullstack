@@ -1,19 +1,19 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
-import { useForm, Controller } from 'react-hook-form'
-import { TextField, Button } from '@mui/material'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useForm, Controller } from "react-hook-form";
+import { TextField, Button } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import { loginSuccess } from '../redux/auth/actions'
-import { AppState } from '../redux/store'
+import { loginSuccess } from "../redux/auth/actions";
+import { AppState } from "../redux/store";
 
 type FormData = {
-  firstName: string
-  lastName: string
-  email: string
-}
+  firstName: string;
+  lastName: string;
+  email: string;
+};
 
 const schema = yup
   .object({
@@ -21,46 +21,46 @@ const schema = yup
     lastName: yup.string().min(5).required(),
     email: yup.string().email().required(),
   })
-  .required()
+  .required();
 
 function Profile() {
-  const dispatch = useDispatch()
-  const userData = useSelector((state: AppState) => state.auth.user)
+  const dispatch = useDispatch();
+  const userData = useSelector((state: AppState) => state.auth.user);
   const {
     handleSubmit,
     reset,
     control,
     formState: { errors },
   } = useForm<FormData>({
-    mode: 'onBlur',
+    mode: "onBlur",
     defaultValues: {
-      firstName: userData?.firstName ?? '',
-      lastName: userData?.lastName ?? '',
-      email: userData?.email ?? '',
+      firstName: userData?.firstName ?? "",
+      lastName: userData?.lastName ?? "",
+      email: userData?.email ?? "",
     },
     resolver: yupResolver(schema),
-  })
+  });
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/user/profile')
-        dispatch(loginSuccess(response.data))
-        reset(response.data)
+        const response = await axios.get("/user/profile");
+        dispatch(loginSuccess(response.data));
+        reset(response.data);
       } catch (error) {
         // dispatch action that handle error
       }
-    }
+    };
 
-    fetchProfile()
-  }, [dispatch, reset])
+    fetchProfile();
+  }, [dispatch, reset]);
 
   const onSubmit = async (data: FormData) => {
-    const response = await axios.put('/user', data)
+    const response = await axios.put("/user", data);
     if (response.status === 200) {
-      alert('updated')
+      alert("updated");
     }
-  }
+  };
 
   return (
     <div>
@@ -69,7 +69,7 @@ function Profile() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Controller
-            name='firstName'
+            name="firstName"
             control={control}
             render={({ field }) => (
               <TextField
@@ -80,7 +80,7 @@ function Profile() {
             )}
           />
           <Controller
-            name='lastName'
+            name="lastName"
             control={control}
             render={({ field }) => (
               <TextField
@@ -91,7 +91,7 @@ function Profile() {
             )}
           />
           <Controller
-            name='email'
+            name="email"
             control={control}
             render={({ field }) => (
               <TextField
@@ -102,10 +102,10 @@ function Profile() {
             )}
           />
         </div>
-        <Button type='submit'>Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

@@ -70,7 +70,7 @@ export const googleLogin = async (
   next: NextFunction
 ) => {
   try {
-    const user = req.user
+    const user = req.user as any
     const token = jwt.sign({ email: user?.email }, JWT_SECRET)
     res.json({ user, token })
   } catch (error) {

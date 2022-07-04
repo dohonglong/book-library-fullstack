@@ -14,7 +14,7 @@ dotenv.config({ path: '.env' })
 const app = express()
 
 // Express configuration
-app.set('port', process.env.PORT || 5000)
+app.set('port', process.env.PORT || 3000)
 
 // Global middleware
 app.use(cors())

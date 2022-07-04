@@ -5,6 +5,9 @@ import axios from "axios";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+
+import storeFactory from "./redux/store";
 
 axios.interceptors.request.use((request) => {
   const token = localStorage.getItem("access_token");
@@ -22,7 +25,9 @@ axios.defaults.baseURL = "http://localhost:5000/api/v1";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={storeFactory()}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
