@@ -1,5 +1,4 @@
-import React from "react";
-import GoogleLogin from "react-google-login";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
@@ -21,13 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      <GoogleLogin
-        clientId="31611394858-kgo9mn1ei3fjrtsk50ic7hsk4j5ffmdr.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
+      <GoogleOAuthProvider clientId="31611394858-kgo9mn1ei3fjrtsk50ic7hsk4j5ffmdr.apps.googleusercontent.com">
+        <GoogleLogin
+          onSuccess={responseGoogle}
+          onError={() => responseGoogle}
+        ></GoogleLogin>
+      </GoogleOAuthProvider>
     </div>
   );
 }
