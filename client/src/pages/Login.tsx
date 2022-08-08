@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
 
   const responseGoogle = async (response: any) => {
-    const tokenId = response?.tokenId;
+    const tokenId = response?.credential;
     const res = await axios.post("/user/google-login", { id_token: tokenId });
     const { user, token } = res.data;
     if (res.status === 200) {
@@ -24,8 +24,8 @@ function Login() {
       <h1>Login with google</h1>
       <GoogleOAuthProvider clientId="31611394858-kgo9mn1ei3fjrtsk50ic7hsk4j5ffmdr.apps.googleusercontent.com">
         <GoogleLogin
-          onSuccess={responseGoogle}
-          onError={() => responseGoogle}
+          onSuccess={(response) => responseGoogle(response)}
+          onError={() => console.log("Login failed!")}
         ></GoogleLogin>
       </GoogleOAuthProvider>
     </div>
