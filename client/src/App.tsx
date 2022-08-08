@@ -1,31 +1,27 @@
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { loginSuccess } from "./redux/auth/actions";
+import Authenticated from "./components/Authenticated";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 function App() {
-  const dispatch = useDispatch();
-  const responseGoogle = async (response: any) => {
-    const tokenId = response?.tokenId;
-    const res = await axios.post("/user/google-login", { id_token: tokenId });
-    const { user, token } = res.data;
-    localStorage.setItem("access_token", token);
-
-    dispatch(loginSuccess(user));
-  };
-
-  axios.get("/book");
-
   return (
     <div className="App">
-      <GoogleOAuthProvider clientId="31611394858-kgo9mn1ei3fjrtsk50ic7hsk4j5ffmdr.apps.googleusercontent.com">
-        <GoogleLogin
-          onSuccess={responseGoogle}
-          onError={() => responseGoogle}
-        ></GoogleLogin>
-      </GoogleOAuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/profile"
+          element={
+            <Authenticated>
+              <Profile />
+            </Authenticated>
+          }
+        />
+      </Routes>
     </div>
   );
 }

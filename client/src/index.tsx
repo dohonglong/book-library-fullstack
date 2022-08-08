@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 
 import storeFactory from "./redux/store";
+import { BrowserRouter } from "react-router-dom";
 
 axios.interceptors.request.use((request) => {
   const token = localStorage.getItem("access_token");
@@ -25,9 +26,11 @@ axios.defaults.baseURL = "http://localhost:5000/api/v1";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={storeFactory()}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={storeFactory()}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
