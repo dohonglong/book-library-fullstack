@@ -30,18 +30,21 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    if (req.body.email === 'duy.nguyen@integrify.io') {
+    if (req.body.email === 'dohonglong1998@gmail.com') {
       req.body.isAdmin = true
     }
 
     const user = new User(req.body)
     const newUser = await UserService.create(user)
     res.json(newUser)
+    console.log('HELLO WORLD')
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
+      console.log(error)
     } else {
       next(error)
+      console.log(error)
     }
   }
 }

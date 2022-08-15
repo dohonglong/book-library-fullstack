@@ -1,5 +1,5 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 
@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 // import { BookDocument } from "../redux/auth/actions";
 
 function Home() {
+  const [books, setBooks] = useState([]);
+  const fetchBooks = async () => {
+    const res = await axios.get("/book");
+    setBooks(res.data);
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
   // const [books, setBooks] = useState<BookDocument[]>([]);
   // const dispatch = useDispatch();
 
