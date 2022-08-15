@@ -9,16 +9,17 @@ export const googleStrategy = new GoogleIdTokenStrategy(
   {
     clientId: GOOGLE_CLIENT_ID,
   },
-  (parsedToken: any, googleId: any, done: any) => {
+  async (parsedToken: any, googleId: any, done: any) => {
     console.log('parsed token', parsedToken)
     console.log('google id', googleId)
-    // const user = await User.findOrCreate(parsedToken)
+    //const user = await UserService.findOrCreate(parsedToken)
     const user = {
       firstName: 'long',
       lastName: 'do',
       createdAt: '01/04/2022',
       dob: '01/09/1998',
-      email: 'long.do@integrify.io',
+      email: 'dohonglong1998@gmail.com',
+      isAdmin: true,
     }
 
     done(null, user)
